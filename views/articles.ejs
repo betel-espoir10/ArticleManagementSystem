@@ -1,0 +1,106 @@
+<%- include('partials/header.ejs') %>
+
+        <a href="/list" class="btn btn-secondary m-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-skip-backward-fill" viewBox="0 0 16 16">
+                <path d="M.5 3.5A.5.5 0 0 0 0 4v8a.5.5 0 0 0 1 0V8.753l6.267 3.636c.54.313 1.233-.066 1.233-.697v-2.94l6.267 3.636c.54.314 1.233-.065 1.233-.696V4.308c0-.63-.693-1.01-1.233-.696L8.5 7.248v-2.94c0-.63-.692-1.01-1.233-.696L1 7.248V4a.5.5 0 0 0-.5-.5"/>
+           </svg>
+        </a>
+
+<div class="container d-flex justify-content-center align-items-center mb-3" style="min-height: 40vh;">
+
+    <div class="card shadow-lg" style="width: 600px;">
+
+        <!-- HEADER VERT -->
+        <div class="card-header bg-success text-white text-center">
+            <h4>New Article</h4>
+        </div>
+
+        <div class="card-body">
+
+            <!--  MESSAGE SUCCESS -->
+            <% if (typeof success !== 'undefined') { %>
+                <div class="alert alert-success text-center" id="successMessage">
+                    Article added successfully ! ✅
+                </div>
+            <% } %>
+
+            <form id="articleForm" action="/articles" method="POST" enctype="multipart/form-data">
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Name:</label>
+                    <input type="text" name="name" class="form-control" placeholder="Enter article name" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold ">Brand:</label>
+                    <input type="text" name="brand" class="form-control" placeholder="Enter article brand" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold ">Category:</label>
+                    <select type="text" name="category" id="category" class="form-select" required>
+                        <option value="">--- Choose Category ---</option>
+                        <% if (categories && categories.length > 0) { %>
+                        <% categories.forEach(category => { %>
+                            <option value="<%= category.id %>"><%= category.category %></option>
+                        <% }) %>
+                     <% } %>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold ">Content:</label>
+                    <textarea name="content" class="form-control" rows="3" placeholder="Enter content" required></textarea>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold ">Price:</label>
+                        <input type="number" name="price" class="form-control" placeholder="Unit price" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold ">Stock:</label>
+                        <input type="number" name="stock" class="form-control" placeholder="Stock quantity" required>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold ">Upload Image:</label>
+                    <input type="file" name="uploaded-file" class="form-control" accept="image/*" required>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success btn-lg">
+                        Add Article
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+
+<!-- SCRIPT RESET + AUTO HIDE MESSAGE -->
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+
+    const form = document.getElementById("articleForm");
+    const successMessage = document.getElementById("successMessage");
+
+    // reset automatique if success display
+    if (successMessage) {
+        form.reset();
+
+        // hidden message after 3 secondes
+        setTimeout(() => {
+            successMessage.style.display = "none";
+        }, 3000);
+    }
+
+});
+</script>
+<%- include('partials/footer.ejs') %>

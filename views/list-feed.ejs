@@ -1,0 +1,77 @@
+<%- include('partials/header.ejs') %>
+
+<div class="d-flex justify-content-start mb-3 p-2">
+        <a href="/feedback" class="btn btn-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-skip-backward-fill" viewBox="0 0 16 16">
+            <path d="M.5 3.5A.5.5 0 0 0 0 4v8a.5.5 0 0 0 1 0V8.753l6.267 3.636c.54.313 1.233-.066 1.233-.697v-2.94l6.267 3.636c.54.314 1.233-.065 1.233-.696V4.308c0-.63-.693-1.01-1.233-.696L8.5 7.248v-2.94c0-.63-.692-1.01-1.233-.696L1 7.248V4a.5.5 0 0 0-.5-.5"/>
+            </svg>
+        </a>
+</div>
+<div class="container mt-2">
+    <h1 class="mb-3 text-center">Users Feedback</h1>
+
+    <a href="/feedback" class="btn btn-success mb-3">Add FeedBack</a>
+
+    <table class="table table-bordered table-hover table-striped align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th> 
+                <th>Article</th>       
+                <th>Rating</th>
+                <th>Comment</th>
+                <th>Username</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% if (feedbacks && feedbacks.length > 0) { %>
+
+            <% feedbacks.forEach(function(fb, index) { %>
+            <tr>
+                <td><%= index + 1 %></td>
+               <td>
+                <%= fb.articles ? fb.articles.name : "N/A" %>
+              </td> 
+            <td>
+                <% if (fb.rating == 1) { %>
+                    <span class="badge bg-danger">Bad</span>
+                <% } else if (fb.rating == 2) { %>
+                    <span class="badge bg-secondary">Average</span>
+                <% } else if (fb.rating == 3) { %>
+                    <span class="badge bg-warning text-dark">Passable</span>               
+                <% } else if (fb.rating == 4) { %>
+                    <span class="badge bg-info text-dark">Satisfied</span>
+                <% } else if (fb.rating == 5) { %>
+                    <span class="badge bg-success">Very Satisfied</span>
+                <% } %>
+            </td>
+                
+                <td><%= fb.comment %></td>
+                <td>
+                    <%= fb.users ? fb.users.username : "N/A" %>
+                </td>
+
+                <td>
+                    <a href="/delete/<%= fb.id %>" class="btn btn-sm btn-danger"
+                       onclick="return confirm('Are you sure? Do You want to delete this FeedBack')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+                    </svg>
+                    </a>
+                </td>
+            </tr>
+                <% }); %>
+
+            <% } else { %>
+
+            <tr>
+                <td colspan="5" class="text-center"> Any feedback in the table !</td>
+            </tr>
+
+            <% } %>
+        </tbody>
+    </table>
+</div>
+
+<%- include('partials/footer.ejs') %>

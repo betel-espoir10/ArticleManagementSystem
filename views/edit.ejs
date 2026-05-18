@@ -1,0 +1,89 @@
+<%- include('partials/header.ejs') %> 
+
+<div class="container d-flex justify-content-center align-items-center mb-4" style="min-height: 70vh;">
+    
+    <div class="card shadow-lg" style="width: 600px;">
+        
+        <div class="card-header bg-warning text-dark text-center">
+            <h4 class="fw-bold">Edit Article</h4>
+        </div>
+
+        <div class="card-body">
+
+           <!-- MESSAGE SUCCESS -->
+            <% if (typeof success !== 'undefined') { %>
+                <div class="alert alert-success text-center">
+                    Article updated successfully ! ✅
+                </div>
+            <% } %>
+
+            <form action="/update/<%= article.id %>" method="POST" enctype="multipart/form-data">
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Name:</label>
+                    <input type="text" name="name" value="<%= article.name %>" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Brand:</label>
+                    <input type="text" name="brand" value="<%= article.brand %>" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Category :</label>
+                     <select name="categoryId" class="form-select">
+
+                            <% if (categories && categories.length > 0) { %>
+                                <% categories.forEach(cat => { %>
+                                <option value="<%= cat.id %>"
+                                    <%= article.categoryId === cat.id ? "selected" : "" %>>
+                                    <%= cat.category %>
+                                </option>
+                                <% }) %>
+                            <% } %>
+                    </select>                      
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Content :</label>
+                    <textarea name="content" class="form-control" rows="3" required><%= article.content %></textarea>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">Price:</label>
+                        <input type="number" name="price" value="<%= article.price %>" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">Stock:</label>
+                        <input type="number" name="stock" value="<%= article.stock %>" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Change Image :</label>
+                    <input type="file" name="uploaded-file" class="form-control">
+                </div>
+
+                <% if(article.picture){ %>
+                    <div class="text-center mb-3">
+                        <p class="text-dark fw-bold">Current Image:</p>
+                        <img src="/uploads/<%= article.picture %>" 
+                         style="width:80px; border-radius:6px;">
+                    </div>
+                <% } %>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-warning btn-lg fw-bold text-dark">
+                        Update Article
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+<%- include('partials/footer.ejs') %>

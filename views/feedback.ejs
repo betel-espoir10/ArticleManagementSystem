@@ -1,0 +1,41 @@
+<%- include('partials/header.ejs') %>
+
+<a href="/list-feed" class="btn btn-success m-2">
+           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-check" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0m0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0m0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
+            </svg> List
+        </a>
+
+<div class="container mt-2 d-flex justify-content-center">
+    <div class="card shadow p-4" style="width: 500px;">
+        <h3 class="text-center mb-4 bg-success p-3 text-light" style="border-radius: 10px;">Add Feedback</h3>
+
+        <form action="/feedback" method="POST">
+            <label for="article" class="fw-bold"> Article:</label>
+            <select name="articleId" class="form-select mb-2" required>
+                <option value="">--- Choose Article ---</option>
+                <% if (articles && articles.length > 0) { %>
+                    <% articles.forEach(article => { %>
+                        <option value="<%= article.id %>"><%= article.name %></option>
+                    <% }) %>
+                <% } %>
+            </select>
+            <label for="rating" class="fw-bold">Rating :</label>
+            <select name="rating" class="form-select" required>
+                <option value="">--- Select your rating ---</option>
+                <option value="1">1 - Bad</option>
+                <option value="2">2 - Average</option>
+                <option value="3">3 - Passable</option>
+                <option value="4">4 - Satisfied</option>
+                <option value="5">5 - Very Satisfied</option>
+            </select>
+
+            <label for="comment" class="fw-bold">Comment :</label>
+            <textarea name="comment" class="form-control mb-2" placeholder="Comment"></textarea>
+
+            <button class="btn btn-success w-100 mt-3">Add Feedback</button>
+        </form>
+    </div>
+</div>
+
+<%- include('partials/footer.ejs') %>

@@ -1,0 +1,30 @@
+<%- include('partials/header.ejs') %>
+
+<div
+  class="container d-flex justify-content-center align-items-center"
+  style="height: 80vh"
+>
+  <div
+    class="card shadow text-center p-4"
+    style="width: 400px; border-radius: 12px"
+  >
+    <h3 class="text-danger mb-3">Access Denied 🚫</h3>
+
+    <p><%= message || "You are not allowed to perform this action." %></p>
+
+    <button onclick="goBack()" class="btn btn-primary">Go Back</button>
+  </div>
+</div>
+
+<script>
+  function goBack() {
+    window.history.back();
+  }
+
+  //Goback  automatically after 3 seconds
+  setTimeout(() => {
+    window.history.back();
+  }, 3000);
+</script>
+
+<%- include('partials/footer.ejs') %>

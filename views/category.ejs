@@ -1,0 +1,28 @@
+<%- include('partials/header.ejs') %>
+
+        <a href="/list" class="btn btn-secondary m-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-skip-backward-fill" viewBox="0 0 16 16">
+                <path d="M.5 3.5A.5.5 0 0 0 0 4v8a.5.5 0 0 0 1 0V8.753l6.267 3.636c.54.313 1.233-.066 1.233-.697v-2.94l6.267 3.636c.54.314 1.233-.065 1.233-.696V4.308c0-.63-.693-1.01-1.233-.696L8.5 7.248v-2.94c0-.63-.692-1.01-1.233-.696L1 7.248V4a.5.5 0 0 0-.5-.5"/>
+           </svg>
+        </a>
+
+<div class="container mt-2 d-flex justify-content-center">
+    <div class="card shadow p-4" style="width: 500px;">
+        <h3 class="text-center mb-4 bg-success p-3 text-light" style="border-radius: 10px;">New Category</h3>
+
+        <form action="/category" method="POST">
+
+            <div class="row">
+                <div class="col">
+                    <label for="category" class="fw-bold"> Category :</label>
+                    <input type="text" name="category" class="form-control mb-2" placeholder="Category Name "></input>
+                </div>
+                <div class="col">
+                     <button class="btn btn-success w-100 mt-4">Add Category</button>
+                </div>
+            </div>       
+        </form>
+    </div>
+</div>
+
+<%- include('partials/footer.ejs') %>

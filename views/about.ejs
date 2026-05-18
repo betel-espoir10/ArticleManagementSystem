@@ -1,0 +1,228 @@
+<%- include('partials/header.ejs') %>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --red: #dc3545;
+        --light: #f8f9fa;
+      }
+
+      body {
+        background-color: #f2f2f2;
+      }
+
+      .home {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 40px;
+        flex-wrap: wrap;
+      }
+
+      .home-content {
+        max-width: 600px;
+      }
+
+      .home-img {
+        width: 300px;
+        height: 300px;
+        animation: animimg 4s ease-in-out infinite;
+        background: var(--red);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        border: 3px solid var(--light);
+        padding-top: 50px;
+      }
+
+      .home-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      @keyframes animimg {
+        0% {
+          transform: translateY(0%);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(0%);
+        }
+      }
+
+      .home-content h3 {
+        font-size: 2rem;
+        font-weight: 700;
+      }
+
+      .home-content h1 {
+        font-size: 3rem;
+        font-weight: bold;
+        color: var(--red);
+      }
+
+      .home-content p {
+        font-size: 1rem;
+        margin-top: 15px;
+      }
+
+      .multiple {
+        color: var(--red);
+        font-weight: bold;
+      }
+
+      .social-media a {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 45px;
+        height: 45px;
+        font-size: 1.5rem;
+        background-color: rgb(115, 9, 12);
+        color: var(--light);
+        border-radius: 10px;
+        margin: 20px 10px 0 0;
+        transition: 0.3s;
+      }
+
+      .social-media a:hover {
+        background: var(--red);
+        box-shadow: 0 0 10px var(--red);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Bouton retour -->
+    <div class="d-flex justify-content-start p-3">
+      <a href="/list" class="btn btn-secondary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-skip-backward-fill" viewBox="0 0 16 16">
+                <path d="M.5 3.5A.5.5 0 0 0 0 4v8a.5.5 0 0 0 1 0V8.753l6.267 3.636c.54.313 1.233-.066 1.233-.697v-2.94l6.267 3.636c.54.314 1.233-.065 1.233-.696V4.308c0-.63-.693-1.01-1.233-.696L8.5 7.248v-2.94c0-.63-.692-1.01-1.233-.696L1 7.248V4a.5.5 0 0 0-.5-.5"/>
+           </svg>
+      </a>
+    </div>
+
+    <div class="container mt-2">
+      <h1 class="text-center mb-2 bg-success p-3 text-light" style="border-radius: 10px;">About InsightStore</h1>
+
+      <div class="card shadow p-4">
+        <p>
+          Welcome to <strong>INSIGHTSTORE</strong>, your trusted platform for
+          managing and discovering articles.
+        </p>
+
+        <p>
+          This application was built to provide a simple and efficient way to
+          manage products, including adding, editing, updating and deleting articles, as
+          well as collecting user feedback.
+        </p>
+
+        <p>
+          Users can explore available articles and share their
+          opinions through a structured feedback system.
+        </p>
+
+        <p>
+          Our goal is to deliver a clean, user-friendly experience while
+          maintaining a solid and scalable backend architecture.
+        </p>
+
+        <p class="mt-4">
+          <strong>Technologies used:</strong>
+        </p>
+        <ul>
+          <li>Node.js</li>
+          <li>Express.js</li>
+          <li>Sequelize (MySQL)</li>
+          <li>EJS (Embedded JavaScript Templates)</li>
+          <li>Bootstrap 5</li>
+          <li>MVC Architecture</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Section principale -->
+    <div
+      class="container border-secondary p-2 mt-2 border-opacity-25"
+      style="border-radius: 10px"
+    >
+    <div class="card shadow p-2 mb-5">
+      <section class="home">
+        <div class="home-content">
+          <h3>Hello, I'm</h3>
+          <h1>BETEL Espoir</h1>
+          <h3>and I'm a <span class="multiple"></span></h3>
+
+          <p class="fw-bold">
+            A developer passionate about creating modern web applications,
+            designing intuitive interfaces, and analyzing data.
+          </p>
+
+          <div class="social-media">
+            <a href="#"><i class="fa-brands fa-github"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://www.facebook.com/espoir.betel.2025/"
+              ><i class="fa-brands fa-facebook"></i
+            ></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+        </div>
+
+        <!-- Image -->
+        <div class="home-img">
+          <img src="/images/betel.png" alt="photo" />
+        </div>
+        </div>
+      </section>
+    </div>
+    <!-- JS Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Typed.js -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+    <!-- Script animation -->
+    <script>
+      window.onload = function () {
+        const element = document.querySelector(".multiple");
+
+        if (element) {
+          new Typed(".multiple", {
+            strings: ["Web Developer", "Web Designer", "Data Analyst"],
+            typeSpeed: 100,
+            backSpeed: 100,
+            backDelay: 1000,
+            loop: true,
+          });
+        } else {
+          console.log("Element .multiple non trouvé !");
+        }
+      };
+    </script>
+  </body>
+</html>
+<%- include('partials/footer.ejs') %>
